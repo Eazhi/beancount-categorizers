@@ -5,10 +5,14 @@ from smart_importer.hooks import ImporterHook
 import logging
 
 class PayeeCategorizer(ImporterHook):
-    def __init__(self, categories):
+    def __init__(self, categories, match_mechanism = "any"):
         self.account_to_payees = categories
         self.payee_to_account = {}
         self.regexes = {}
+        self.match_mechanism = match_mechanism
+
+        if match_mechanism not in ["payee", "narration", "any"]:
+            raise ValueError(f"match mechanism invalid, should be 'payee', 'narration' or 'any'")
 
         for account, payees in self.account_to_payees.items():
             for payee in payees:
@@ -35,7 +39,10 @@ class PayeeCategorizer(ImporterHook):
         match = set()
         payee_matches = set()
         for payee, prog in self.regexes.items():
-            if prog.match(entry.payee) or prog.match(entry.narration):
+            if (
+                (self.match_mechanism != "narration" and (prog.match(entry.payee))
+                or (self.match_mechanism != "payee" and prog.match(entry.narration)))
+            ):
                 match.add(self.payee_to_account[payee])
                 payee_matches.add(payee)
 
