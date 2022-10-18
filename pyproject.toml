@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "beancount-categorizers"
-version = "0.1.0"
+version = "0.1.1"
 description = "Modules for the transaction import pipeline"
 authors = ["Paul Khuat-Duy <paul@khuat-duy.org>"]
 license = "MIT"
