@@ -1,11 +1,12 @@
+import logging
 import re
+
 from beancount.core import data
 from smart_importer.hooks import ImporterHook
 
-import logging
 
 class FlagTxn(ImporterHook):
-    def __init__(self, payees):
+    def __init__(self, payees: list):
         self.payees = payees
 
     def __call__(self, importer, file, imported_entries, existing_entries):
@@ -14,8 +15,9 @@ class FlagTxn(ImporterHook):
         ]
 
     def _process(self, entry):
-        if type(entry) != data.Transaction or len(entry.postings) != 1:
-            return
+        if not isinstance(entry, data.Transaction) or len(entry.postings) != 1:
+            logging.info(f"Did not flag entry {entry}")
+            return entry
 
         for payee in self.payees:
             if re.match(payee, (entry.payee or entry.narration)):
@@ -29,3 +31,5 @@ class FlagTxn(ImporterHook):
                     entry.links,
                     entry.postings,
                 )
+
+        return entry
