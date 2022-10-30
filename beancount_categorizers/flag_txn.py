@@ -2,7 +2,7 @@ import logging
 import re
 
 from beancount.core import data
-from smart_importer.hooks import ImporterHook
+from beancount_categorizers.hooks import ImporterHook
 
 
 class FlagTxn(ImporterHook):

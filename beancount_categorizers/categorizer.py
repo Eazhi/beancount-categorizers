@@ -3,7 +3,7 @@ import re
 from enum import Enum
 
 from beancount.core import data
-from smart_importer.hooks import ImporterHook
+from beancount_categorizers.hooks import ImporterHook
 
 
 class MatchMechanism(Enum):

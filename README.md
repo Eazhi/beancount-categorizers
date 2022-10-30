@@ -16,7 +16,7 @@ from beancount_bank import BankImporter  # Change with your bank's custom import
 from beancount_categorizers import PayeeCategorizer, FlagTxn
 from beancount_categorizers.categorizer import MatchMechanism
 
-from smart_importer import apply_hooks
+from beancount_categorizers.hooks import apply_hooks
 
 flagger = FlagTxn([])
 
