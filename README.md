@@ -14,8 +14,9 @@ $ pip install beancount-categorizers
 ```python
 from beancount_bank import BankImporter  # Change with your bank's custom importer
 from beancount_categorizers import PayeeCategorizer, FlagTxn
+from beancount_categorizers.categorizer import MatchMechanism
 
-from smart_importer import apply_hooks
+from beancount_categorizers.hooks import apply_hooks
 
 flagger = FlagTxn([])
 
@@ -24,7 +25,7 @@ categorizer = PayeeCategorizer(
         "Income:Employer": ["Employer"],
         "Expenses:Food:Groceries": ["Grocery stores.*", "Another grocery store"],
     },
-    # optional match mechanism, either on the payee, the narration or both
+    MatchMechanism.ANY,  # optional match mechanism, either on the payee, the narration or both
 )
 
 CONFIG = [

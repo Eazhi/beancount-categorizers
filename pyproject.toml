@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "beancount-categorizers"
-version = "0.1.1"
+version = "0.2.0"
 description = "Modules for the transaction import pipeline"
 authors = ["Paul Khuat-Duy <paul@khuat-duy.org>"]
 license = "MIT"
@@ -18,7 +18,6 @@ keywords = ["banking", "beancount", "cli-accounting", "finance"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-smart-importer = "0.3.0"
 beancount = "^2.3.5"
 isort = "^5.10.1"
 black = "^22.1.0"
