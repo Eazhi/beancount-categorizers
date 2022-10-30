@@ -1,2 +1,2 @@
-from beancount_categorizers.categorizer import PayeeCategorizer
-from beancount_categorizers.flag_txn import FlagTxn
+from beancount_categorizers.categorizer import PayeeCategorizer  # noqa
+from beancount_categorizers.flag_txn import FlagTxn  # noqa

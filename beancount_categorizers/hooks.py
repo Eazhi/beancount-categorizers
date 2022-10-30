@@ -40,14 +40,10 @@ def apply_hooks(importer, hooks):
     @wraps(unpatched_extract)
     def patched_extract_method(file, existing_entries=None):
         logger.debug("Calling the importer's extract method.")
-        imported_entries = unpatched_extract(
-            file, existing_entries=existing_entries
-        )
+        imported_entries = unpatched_extract(file, existing_entries=existing_entries)
 
         for hook in hooks:
-            imported_entries = hook(
-                importer, file, imported_entries, existing_entries
-            )
+            imported_entries = hook(importer, file, imported_entries, existing_entries)
 
         return imported_entries
 
